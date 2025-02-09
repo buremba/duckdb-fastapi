@@ -1,6 +1,6 @@
 # DuckDB FastAPI
 
-DuckDB FastAPI is a Python package that integrates DuckDB with RESTFul APIs via FastAPI. Inspired by PostgREST, it automatically generates REST endpoints for all your DuckDB macros.
+DuckDB FastAPI is a Python package that integrates DuckDB with RESTFul APIs via FastAPI.
 
 ## Use-cases
 
