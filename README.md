@@ -30,8 +30,9 @@ import duckdb
 from duckdb_fastapi import DuckDBFastAPI
 import uvicorn
 
-# Create your DuckDB connection
-conn = duckdb.connect('path/to/your/database.db')  # or just duckdb.connect() for in-memory
+conn = duckdb.connect()
+conn.execute("CREATE MACRO get_sample() AS TABLE SELECT 1 as t")
+conn.execute("CREATE MACRO sample_rows(rowcount) AS TABLE SELECT unnest(generate_series(1, rowcount)) as idx")
 
 # Create a FastAPI app from your DuckDB connection
 db_fastapi = DuckDBFastAPI(conn)
@@ -42,20 +43,11 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-### DuckDB Macro \<> REST Endpoint Mapping
-
-Let's say you have these macros in your DuckDB database:
-
-```sql
-CREATE MACRO get_sample() AS TABLE SELECT 1 as t;
-CREATE MACRO sample_rows(rowcount) AS TABLE SELECT unnest(generate_series(1, rowcount)) as idx;
-```
-
 DuckDB FastAPI will automatically create these endpoints:
 
 - `curl "http://localhost:8000/macro/get_sample"`
 ```
-[{"t": [1]}]
+[{"t": 1}]
 ```
 
 - `curl "http://localhost:8000/sample_rows?rowcount=10"`
