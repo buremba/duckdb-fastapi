@@ -45,14 +45,13 @@ if __name__ == "__main__":
 
 DuckDB FastAPI will automatically create these endpoints:
 
-- `curl "http://localhost:8000/macro/get_sample"`
 ```
+> curl "http://localhost:8000/macro/get_sample"
 [{"t": 1}]
 ```
 
-- `curl "http://localhost:8000/sample_rows?rowcount=10"`
-
 ```
+> curl "http://localhost:8000/sample_rows?rowcount=10"
 [{"idx": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}]
 ```
 
