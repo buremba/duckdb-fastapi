@@ -2,7 +2,9 @@
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from duckdb_fastapi import create_duckdb_endpoint
+
+from duckdb_fastapi.to_duckdb import create_duckdb_endpoint
+
 
 @pytest.fixture
 def sample_app():
@@ -64,6 +66,4 @@ def test_generated_sql_is_valid():
         
     # This should not raise any syntax errors
     conn = duckdb.connect(':memory:')
-    conn.execute("INSTALL httpfs")
-    conn.execute("LOAD httpfs")
     conn.execute(sql)
