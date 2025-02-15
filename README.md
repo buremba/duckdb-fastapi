@@ -96,8 +96,4 @@ SELECT * FROM myapi.get_item('123');
 
 ```bash
 uv pip install -e ".[dev]"
-```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+``
